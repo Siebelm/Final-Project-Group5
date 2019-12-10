@@ -4,12 +4,12 @@ Final Project for Machine Learning II:  Deep Learning
 ## Get Data from Google Storage
 Run these linux commands in your cloud terminal
 
-wget https://storage.googleapis.com/game_of_thrones_classification/train.zip
-unzip train.zip
-wget https://storage.googleapis.com/game_of_thrones_classification/test.zip
-unzip test.zip
-wget https://storage.googleapis.com/game_of_thrones_classification/val.zip
-unzip val.zip
+wget https://storage.googleapis.com/game_of_thrones_classification/train.zip 
+unzip train.zip 
+wget https://storage.googleapis.com/game_of_thrones_classification/test.zip 
+unzip test.zip 
+wget https://storage.googleapis.com/game_of_thrones_classification/val.zip 
+unzip val.zip 
 
 ## Create Dataset
 If you prefer to recreate the data from scratch instead of fetching it from Google storage, create the necessary folders and run the code in [0_Creating_Data](0_Creating_dData/)
