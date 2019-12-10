@@ -5,10 +5,15 @@ Final Project for Machine Learning II:  Deep Learning
 Run these linux commands in your cloud terminal
 
 wget https://storage.googleapis.com/game_of_thrones_classification/train.zip 
+
 unzip train.zip 
+
 wget https://storage.googleapis.com/game_of_thrones_classification/test.zip 
+
 unzip test.zip 
+
 wget https://storage.googleapis.com/game_of_thrones_classification/val.zip 
+
 unzip val.zip 
 
 ## Create Dataset
