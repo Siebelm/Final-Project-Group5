@@ -18,3 +18,6 @@ This [folder](Final-Group-Presentation/) contains a PDF of the presentation made
 
 ## Final Group Project Report
 This [folder](Final-Group-Project-Report/) contains a PDF of the final group report.
+
+## Michael Siebel Individual Report
+This [folder](Michael-Siebel-Individual-Project/) contains a PDF of the individual report. It does not contain a code folder as it is in the parent folder [Code](Code/) contains the code.
