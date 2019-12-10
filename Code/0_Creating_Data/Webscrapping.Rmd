@@ -1,0 +1,477 @@
+---
+title: "Web Scripping"
+author: "Michael Siebel"
+date: "6/24/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(pacman)
+pacman::p_load(rvest, stringr, magick)
+
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE, message=FALSE, comment=NA, warning=FALSE, tidy=TRUE)
+run_date <- date()
+```
+
+```{}
+IMDB <- "https://www.imdb.com"
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\GoT"
+
+num_photos <- 2#3883
+i <- 1
+while (i <= num_photos) {
+  URL <- "https://www.imdb.com/title/tt0944947/mediaindex?refine=still_frame&ref_=ttmi_ref_sf"
+  img_html <- read_html(URL) %>%
+    html_nodes(xpath = 
+      paste0('//*[@id="media_index_thumbnail_grid"]/a[', i, ']')) %>%
+        html_attr('href')
+  
+  img_src <- read_html(paste0(IMDB, img_html)) %>%
+    html_nodes('.pswp__img--placeholder') %>%
+        html_attr('src')
+  print(img_src)
+    download.file(paste0(IMDB, img_src), destfile = paste0(folder,"/GoT_", i, ".jpg"), mode = "wb")
+  i <- i + 1
+}
+```
+
+
+# Game of Thrones
+```{r}
+URL <- "https://www.imdb.com/title/tt0944947/mediaindex?refine=still_frame&ref_=ttmi_ref_sf"
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\GoT"
+
+num_photos <- 3883
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:48) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0944947/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/GoT_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/GoT_", i, ".txt"))
+    writeLines("Game of Thrones", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# Friends
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Friends"
+
+num_photos <- 1673
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0108778/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Friends_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Friends_", i, ".txt"))
+    writeLines("Friends", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+
+# Seinfeld
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Seinfeld"
+
+num_photos <- 531
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0098904/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Seinfeld_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Seinfeld_", i, ".txt"))
+    writeLines("Seinfeld", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+
+# Fresh Prince of Bel-Air
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Fresh_Prince"
+
+num_photos <- 317
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0098800/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Fresh_Prince_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Fresh_Prince_", i, ".txt"))
+    writeLines("Fresh Prince of Bel-Air", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# Fresh Off the Boat
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Fresh_Off_the_Boat"
+
+num_photos <- 351
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt3551096/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Fresh_Off_the_Boat_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Fresh_Off_the_Boat_", i, ".txt"))
+    writeLines("Fresh Off the Boat", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# How I Met Your Mother
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\How_I_Met_Your_Mother"
+
+num_photos <- 1466
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0460649/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/How_I_Met_Your_Mother_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/How_I_Met_Your_Mother_", i, ".txt"))
+    writeLines("How I Met Your Mother", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# Spin City
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Spin_City"
+
+num_photos <- 261
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0115369/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Spin_City_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Spin_City_", i, ".txt"))
+    writeLines("Spin City", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# Saved by the Bell
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Saved_by_the_Bell"
+
+num_photos <- 176
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0096694/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Saved_by_the_Bell_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Saved_by_the_Bell_", i, ".txt"))
+    writeLines("Saved by the Bell", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# Boy Meets World
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Boy_Meets_World"
+
+num_photos <- 198
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0105958/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Boy_Meets_World_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Boy_Meets_World_", i, ".txt"))
+    writeLines("Boy Meets World", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+
+# Arrested Development
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\Arrested_Development"
+
+num_photos <- 321
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0367279/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Arrested_Development_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Arrested_Development_", i, ".txt"))
+    writeLines("Arrested Development", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+
+
+# Kim's Convenience
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\0_Kims_Convenience"
+
+num_photos <- 48
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt5912064/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Kims_Convenience_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Kims_Convenience_", i, ".txt"))
+    writeLines("Kim's Convenience", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# Spaced
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\0_Spaced"
+
+num_photos <- 128
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0187664/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Spaced_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Spaced_", i, ".txt"))
+    writeLines("Spaced", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+
+# It's Always Sunny in Philadelphia 
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\0_Philadelphia"
+
+num_photos <- 645
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0472954/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/Philadelphia_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/Philadelphia_", i, ".txt"))
+    writeLines("It's Always Sunny in Philadelphia", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+# The Big Bang Theory 
+```{r}
+folder <- "C:\\Users\\siebe\\Documents\\3 GWU\\7 DATS 6203\\Final\\0_The_Big_Bang_Theory"
+
+num_photos <- 3541
+thumbnails_per_page <- 48
+i <- 1
+pg <- 1
+while (i <= num_photos) {
+  for (j in 1:thumbnails_per_page) {
+
+    URL <- paste0("https://www.imdb.com/title/tt0898266/mediaindex?refine=still_frame&page=", pg, "&ref_=ttmi_mi_sm")
+  
+    img_src <- read_html(URL) %>%
+      html_nodes(xpath = paste0('//*[@id="media_index_thumbnail_grid"]/a[', j, ']/img')) %>%
+        html_attr('src')
+    
+    download.file(img_src, destfile = paste0(folder,"/The_Big_Bang_Theory_", i, ".jpg"), mode = "wb", quiet=T)
+        
+    fileConn<-file(paste0(folder,"/The_Big_Bang_Theory_", i, ".txt"))
+    writeLines("The Big Bang Theory", fileConn)
+    close(fileConn)
+
+    i <- i + 1
+  }
+  pg <- pg + 1
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
