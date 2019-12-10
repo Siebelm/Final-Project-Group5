@@ -1,8 +1,7 @@
 # Final-Project-Group5
 Final Project for Machine Learning II:  Deep Learning
 
-# Game of Classification:
-# Deep Learning on Game of Thrones Screenshots
+## Game of Classification:  Deep Learning on Game of Thrones Screenshots
 
 Repository of Convolutional Neural Network of Game of Thrones classification algorithm.
 
